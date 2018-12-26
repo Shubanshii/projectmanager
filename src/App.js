@@ -28,14 +28,18 @@ class App extends Component {
     ]});
   }
 
+// remember react state is immubable.  You DO NOT WANT TO CHANGE IT.  You want to
+// update it
   handleAddProject(project) {
-    console.log(project);
+    let projects = this.state.projects;
+    projects.push(project);
+    this.setState({projects:projects});
   }
 
   render() {
     return (
       <div className="App">
-        <AddProject addProject={this.handleAddProject.bind()}/>
+        <AddProject addProject={this.handleAddProject.bind(this)}/>
         <Projects projects={this.state.projects} />
       </div>
     );
